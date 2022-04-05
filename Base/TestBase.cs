@@ -11,7 +11,7 @@ namespace testapp.Base
 {
     public class TestBase
     {
-        private IWebDriver _driver;
+        protected IWebDriver _driver;
         private ExtentReports _extentReports;
 
         public TestBase()

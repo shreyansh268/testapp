@@ -1,10 +1,11 @@
 using NUnit.Framework;
-using System;
+using SeleniumExtras.PageObjects;
 using testapp.Base;
+using testapp.Pages;
 
 namespace testapp
 {
-    public class Tests:TestBase
+    public class Tests : TestBase
     {
         [SetUp]
         public void Setup()
@@ -12,15 +13,16 @@ namespace testapp
         }
 
         [Test]
-        public void Test1()
+        public void TestPageLoad()
         {
-            Assert.Pass();
+            var homePage = new HomePage(_driver);
+            PageFactory.InitElements(_driver, homePage);
+            Assert.That(homePage.IsPageLoaded(), Is.True, "Home page is not loaded");
         }
 
         [TearDown]
-        public void TestTearDownBaseClass()
+        public void TearDown()
         {
-            Console.WriteLine("derived tear down");
         }
     }
 }
