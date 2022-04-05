@@ -28,7 +28,7 @@ namespace testapp
 
             var tempApi = WeatherApi.GetTemperature("Ujjain");
 
-            Assert.That(uiTemp, Is.InRange(tempApi - 1.0, tempApi + 1.0), "Temperature values in not range +/-1");
+            Assert.That(uiTemp, Is.InRange(tempApi - 2, tempApi + 2), "Temperature values in not range +/-2");
         }
 
         [TearDown]

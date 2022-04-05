@@ -27,10 +27,11 @@ namespace testapp.Pages
         /// Get temperature value from result page
         /// </summary>
         /// <returns>Numberical value of temperature result</returns>
-        public double GetTemperatureValue()
+        public decimal GetTemperatureValue()
         {
             var temp = TemperatureValue.Text;
-            return Convert.ToDouble(temp.Remove(temp.IndexOf("°С")));
+            var v = temp.Remove(temp.IndexOf("°С"));
+            return Convert.ToDecimal(v);
         }
     }
 }
