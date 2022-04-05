@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SeleniumExtras.PageObjects;
+using testapp.Api;
 using testapp.Base;
 using testapp.Pages;
 
@@ -14,14 +15,6 @@ namespace testapp
         }
 
         [Test]
-        public void TestPageLoad()
-        {
-            var homePage = new HomePage(_driver);
-            PageFactory.InitElements(_driver, homePage);
-            Assert.That(homePage.IsPageLoaded(), Is.True, "Home page is not loaded");
-        }
-
-        [Test]
         public void SearchWeather()
         {
             var homePage = new HomePage(_driver);
@@ -30,7 +23,12 @@ namespace testapp
 
             var resultPage = new ResultPage(_driver);
             PageFactory.InitElements(_driver, resultPage);
-            Assert.That(resultPage.GetTemperatureValue(), Is.Not.Empty, "unable to get temperature value");
+            var uiTemp = resultPage.GetTemperatureValue();
+            Assert.That(uiTemp, Is.Not.Null, "Unable to get temperature value");
+
+            var tempApi = WeatherApi.GetTemperature("Ujjain");
+
+            Assert.That(uiTemp, Is.InRange(tempApi - 1.0, tempApi + 1.0), "Temperature values in not range +/-1");
         }
 
         [TearDown]
