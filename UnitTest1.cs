@@ -1,8 +1,10 @@
 using NUnit.Framework;
+using System;
+using testapp.Base;
 
 namespace testapp
 {
-    public class Tests
+    public class Tests:TestBase
     {
         [SetUp]
         public void Setup()
@@ -13,6 +15,12 @@ namespace testapp
         public void Test1()
         {
             Assert.Pass();
+        }
+
+        [TearDown]
+        public void TestTearDownBaseClass()
+        {
+            Console.WriteLine("derived tear down");
         }
     }
 }
