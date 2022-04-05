@@ -44,7 +44,10 @@ namespace testapp.Base
         private void Init()
         {
             InitChromeDriverManager();
-            _driver = new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
+            _driver = new ChromeDriver(options);
             _driver.Navigate().GoToUrl("https://openweathermap.org/");
             _driver.Manage().Window.Maximize();
         }
