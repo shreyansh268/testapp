@@ -26,10 +26,11 @@ namespace testapp.Pages
         /// <summary>
         /// Get temperature value from result page
         /// </summary>
-        /// <returns>String value</returns>
-        public string GetTemperatureValue()
+        /// <returns>Numberical value of temperature result</returns>
+        public double GetTemperatureValue()
         {
-            return TemperatureValue.Text;
+            var temp = TemperatureValue.Text;
+            return Convert.ToDouble(temp.Remove(temp.IndexOf("°С")));
         }
     }
 }
